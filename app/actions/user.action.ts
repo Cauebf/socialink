@@ -19,7 +19,7 @@ export async function syncUser() {
       },
     });
 
-    if(existingUser) return existingUser;
+    if (existingUser) return existingUser;
 
     // create user if it doesn't exist
     const dbUser = await prisma.user.create({
@@ -54,4 +54,16 @@ export async function getUserByClerkId(clerkId: string) {
       },
     },
   });
+}
+
+export async function getDbUserId() {
+  const { userId: clerkId } = await auth();
+
+  if (!clerkId) throw new Error("Unauthorized");
+
+  const user = await getUserByClerkId(clerkId);
+
+  if (!user) throw new Error("User not found");
+
+  return user.id;
 }
