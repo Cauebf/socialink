@@ -7,8 +7,6 @@ export async function syncUser() {
   // it's usually better using a webhook but I'll use this for testing server actions
 
   try {
-    console.log("entrou no syncUser");
-    
     const { userId } = await auth();
     const user = await currentUser();
 
@@ -39,4 +37,21 @@ export async function syncUser() {
   } catch (error) {
     console.log("Error in syncUser:", error);
   }
+}
+
+export async function getUserByClerkId(clerkId: string) {
+  return prisma.user.findUnique({
+    where: {
+      clerkId,
+    },
+    include: {
+      _count: {
+        select: {
+          followers: true,
+          following: true,
+          posts: true,
+        },
+      },
+    },
+  });
 }
