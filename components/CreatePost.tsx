@@ -7,7 +7,7 @@ import { Avatar, AvatarImage } from "./ui/avatar";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 import { ImageIcon, Loader2Icon, SendIcon } from "lucide-react";
-import { createPost } from "@/app/actions/post.action";
+import { createPost } from "@/actions/post.action";
 import toast from "react-hot-toast";
 
 function CreatePost() {
@@ -18,26 +18,26 @@ function CreatePost() {
   const [showImageUpload, setShowImageUpload] = useState(false);
 
   const handleSubmit = async () => {
-    if(!content.trim() && !imageUrl) return
+    if (!content.trim() && !imageUrl) return;
 
     setIsPosting(true);
 
     try {
-        const result = await createPost(content, imageUrl);
+      const result = await createPost(content, imageUrl);
 
-        if(result.success) {
-            // reset the form
-            setContent("");
-            setImageUrl("");
-            setShowImageUpload(false);
+      if (result?.success) {
+        // reset the form
+        setContent("");
+        setImageUrl("");
+        setShowImageUpload(false);
 
-            toast.success("Post created successfully");
-        }
+        toast.success("Post created successfully");
+      }
     } catch (error) {
-        console.error("Failed to create post:", error);
-        toast.error("Failed to create post");
+      console.error("Failed to create post:", error);
+      toast.error("Failed to create post");
     } finally {
-        setIsPosting(false);
+      setIsPosting(false);
     }
   };
 

@@ -1,4 +1,4 @@
-import { getRandomUsers } from "@/app/actions/user.action";
+import { getRandomUsers } from "@/actions/user.action";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import Link from "next/link";
 import { Avatar, AvatarImage } from "./ui/avatar";

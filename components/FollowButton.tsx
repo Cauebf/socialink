@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import { Loader2Icon } from "lucide-react";
 import toast from "react-hot-toast";
-import { toggleFollow } from "@/app/actions/user.action";
+import { toggleFollow } from "@/actions/user.action";
 
 function FollowButton({ userId }: { userId: string }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -15,7 +15,7 @@ function FollowButton({ userId }: { userId: string }) {
     try {
       const result = await toggleFollow(userId);
 
-      if (!result.success) throw new Error(result.error);
+      if (!result?.success) throw new Error(result?.error);
 
       toast.success("Successfully followed user");
     } catch (error) {
