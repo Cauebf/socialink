@@ -1,5 +1,7 @@
 # Socialink 🔗💬
 
+![Desktop Demo](./public/readme-screenshot.png)
+
 ## 📌 Table of Contents
 
 - [Socialink 🔗💬](#socialink-)
